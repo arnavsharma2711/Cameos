@@ -1,0 +1,69 @@
+@import '../../_base.scss';
+.videoMetaData {
+   &__top {
+      span {
+         cursor: pointer;
+      }
+      .ThumbUp{
+          margin: 0.5rem;
+      }
+   }
+
+   &__channel {
+      border-top: 3px solid $border-color;
+      img {
+         width: 50px;
+         height: 50px;
+         margin-right: 10px !important;
+      }
+
+      button {
+         background-color: red;
+         color: #fff;
+         border-radius: 0;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         &.btn-gray {
+            background-color: gray;
+         }
+         &:hover {
+            color: #fff;
+         }
+         &:focus {
+            border: none;
+            outline: none;
+         }
+      }
+   }
+   &__description {
+      font-size: 0.9rem;
+      white-space: pre-line;
+      margin-left: 3.5rem;
+      
+      .showMoreText {
+         text-decoration: none;
+         display: block;
+         margin: 1rem 0;
+         color: #CACACA;
+         font-weight: 700;
+      }
+   }
+}
+
+@media (max-width: $breakpoint-tablet) {
+   .videoMetaData {
+   &__description {
+      margin-left: 1rem;      
+   }
+}
+}
+@media (max-width: $breakpoint-small) {
+   .videoMetaData {
+      h5 {
+         font-size: 1.1rem;
+      }
+      &__description {
+         margin-left: 0.5rem;      
+      }
+   }
+}

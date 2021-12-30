@@ -1,0 +1,82 @@
+@import '../../_base.scss';
+
+.sidebar {
+   background: $black-primary;
+
+   display: flex;
+   flex-direction: column;
+
+   width: 250px;
+   height: 90vh;
+   transition: transform 0.3s ease-in;
+
+   z-index: 999;
+   position: sticky;
+   top: 10vh;
+   left: 0;
+
+   a {
+      color: $text-color;
+      text-decoration: none;
+      &:hover {
+         color: $text-color;
+         
+      }
+   }
+
+   li {
+   background: $black-primary;
+   display: flex;
+      align-items: center;
+
+      padding: 0.5rem 1.5rem;
+      margin: 0.3rem 0;
+      cursor: pointer;
+
+      span {
+         margin-left: 1rem;
+   background: $black-primary;
+   font-size: 14px;
+         font-weight: 500;
+         letter-spacing: 0.4px;
+      }
+
+      &:hover {
+         background-color: $border-color;
+         span {
+      background: $border-color;
+         }
+      }
+   }
+
+   hr {
+      background-color: $border-color;
+      height: 2.5px !important;
+      margin: 0;
+
+   }
+
+   &.open {
+      transform: translateX(0);
+   }
+}
+
+@media (max-width: $breakpoint-medium) {
+   .sidebar {
+      width: 90px;
+      li {
+         justify-content: center;
+      }
+      span {
+         display: none;
+      }
+   }
+}
+@media (max-width: $breakpoint-small) {
+   .sidebar {
+
+      transform: translateX(-100%);
+
+      position: fixed;
+   }
+}
