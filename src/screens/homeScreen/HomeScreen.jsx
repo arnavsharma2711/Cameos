@@ -6,6 +6,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { getPopularVideos, getVideosByCategory } from '../../redux/actions/videos.action'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import VideoSkeleton from '../../components/skeletons/videoSkeleton/VideoSkeleton'
+import { Helmet } from 'react-helmet'
 
 const HomeScreen = ({get}) => {
 
@@ -26,6 +27,9 @@ const HomeScreen = ({get}) => {
          
          return (
        <Container>
+      <Helmet>
+         <title>YouTube Clone</title>
+      </Helmet>
        <CategoriesBar/>
 
        <InfiniteScroll

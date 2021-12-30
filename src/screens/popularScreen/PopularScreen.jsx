@@ -7,6 +7,7 @@ import { getPopularVideos, getVideosByCategory } from '../../redux/actions/video
 import InfiniteScroll from 'react-infinite-scroll-component'
 import VideoSkeleton from '../../components/skeletons/videoSkeleton/VideoSkeleton'
 import { useParams } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const FetchScreen = () => {
 
@@ -29,6 +30,9 @@ const FetchScreen = () => {
          
          return (
        <Container>
+         <Helmet>
+            <title>YouTube Clone</title>
+         </Helmet>
        <CategoriesBar/>
 
        <InfiniteScroll

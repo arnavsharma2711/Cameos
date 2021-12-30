@@ -31,12 +31,13 @@ const WatchScreen = () => {
     return (
         <Row>
             <Helmet>
-            <title>{video?.snippet?.title}</title>
-         </Helmet>
+                <title>{video?.snippet?.title}</title>
+            </Helmet>
             <Col lg={8}>
                 <div className="watchScreen__player">
-                <iframe src={`https://www.youtube.com/embed/${id}`} frameBorder='0' title={video?.snippet?.title} allowFullScreen width='100%' height='100%'></iframe>
-                {/* <iframe src={`https://www.youtube.com/embed/${id}?autoplay=1`} frameBorder='0' title={video?.snippet?.title} allowFullScreen width='100%' height='100%'></iframe> */}
+                <iframe src={`https://www.youtube.com/embed/${id}?autoplay=1`} allow='autoplay' frameBorder='0' title={video?.snippet?.title} allowFullScreen width='100%' height='100%'></iframe>
+                {/* To change App from autoplaying video ... 
+                <iframe src={`https://www.youtube.com/embed/${id}`} frameBorder='0' title={video?.snippet?.title} allowFullScreen width='100%' height='100%'></iframe> */}
                 </div>
                 {!loading ? <VideoMetaData video={video} videoId={id} /> : <h6>Loading...</h6>}
                 <AddComment videoId={id} totalComments={video?.statistics?.commentCount} />

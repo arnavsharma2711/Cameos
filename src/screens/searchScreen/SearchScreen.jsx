@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import SearchVideoHorizontalSkeleton from '../../components/skeletons/searchVideoHorizontalSkeleton/SearchVideoHorizontalSkeleton'
@@ -18,6 +19,9 @@ const SearchScreen = () => {
    const { videos, loading } = useSelector(state => state.searchedVideos)
    return (
       <Container>
+         <Helmet>
+            <title>YouTube Clone | Search Result</title>
+        </Helmet>
          {!loading ? (
             videos?.map(video => (
                <VideoHorizontal

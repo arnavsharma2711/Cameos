@@ -219,7 +219,7 @@ export const getlikedVideos = () => async (dispatch, getState) => {
       const { data } = await request('/videos', {
          params: {
             part: 'snippet,contentDetails,statistics',
-
+            maxResults: 15,
             myRating: 'like',
          },
          headers: {

@@ -9,6 +9,7 @@ import numeral from 'numeral'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Col, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { MdSubscriptions } from 'react-icons/md'
 
 const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
    const {
@@ -90,11 +91,11 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
          </Col>
          <Col xs={6}md={searchScreen || subScreen ? 8 : 6}
             className='p-0 videoHorizontal__right'>
-            <p className='mb-1 videoHorizontal__title'>{title}</p>
+            <p className={subScreen || !isVideo ? 'mb-1 videoHorizontal__titleChannel' : 'mb-1 videoHorizontal__title'}>{title}</p>
 
             {isVideo && (
                <div className='videoHorizontal__details'>
-                  <AiFillEye /> {numeral(views).format('0.a')} Views • {moment(publishedAt).fromNow()}
+                  <AiFillEye /> {numeral(views).format('0.a').toUpperCase()} Views • {moment(publishedAt).fromNow()}
                </div>
             )}
 
@@ -106,11 +107,11 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
                {isVideo && (
                   <LazyLoadImage src={channelIcon?.url ? channelIcon?.url : `https://cdn-icons-png.flaticon.com/512/149/149071.png`} effect='blur' />
                )}
-               <p className='mb-0'>{channelTitle}</p>
+              {isVideo &&(<p className='mb-0' style={{color:'#fff'}}>{channelTitle}</p>)}                
             </div>
             {subScreen && (
                <p className='mt-2'>
-                  {video.contentDetails.totalItemCount} Videos
+                  <MdSubscriptions size={23} style={{marginRight:5}}/>{video.contentDetails.totalItemCount} Videos
                </p>
             )}
          </Col>

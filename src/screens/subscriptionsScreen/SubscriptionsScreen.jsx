@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import SearchVideoHorizontalSkeleton from '../../components/skeletons/searchVideoHorizontalSkeleton/SearchVideoHorizontalSkeleton'
 import VideoHorizontal from '../../components/videoHorizontal/VideoHorizontal'
@@ -20,6 +21,9 @@ const SubscriptionsScreen = () => {
          x=false
    return (
       <Container fluid style={{backgroundColor:'#181818'}}>
+         <Helmet>
+            <title>Subscriptions</title>
+        </Helmet>
          {!loading && x ?  (
             videos?.map(video => (
                <VideoHorizontal video={video} key={video.id} subScreen />

@@ -9,8 +9,10 @@ import { getVideosByChannel } from '../../redux/actions/videos.action'
 import numeral from 'numeral'
 
 import './channelScreen.scss'
+import { Helmet } from 'react-helmet'
 
 const ChannelScreen = () => {
+   
    const { channelId } = useParams()
 
    const dispatch = useDispatch()
@@ -27,6 +29,9 @@ const ChannelScreen = () => {
 
    return (
       <>
+         <Helmet>
+            <title>{snippet?.title}</title>
+         </Helmet>
          <div className='px-5 py-2 my-2 d-flex justify-content-between align-items-center channelHeader'>
             <div className='d-flex align-items-center'>
                <img src={snippet?.thumbnails?.default?.url} alt='' />

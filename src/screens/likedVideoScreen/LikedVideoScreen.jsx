@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import VideoSkeleton from '../../components/skeletons/videoSkeleton/VideoSkeleton'
 import Video from '../../components/video/Video'
@@ -20,6 +21,9 @@ const LikedVideoScreen = () => {
          x=false
    return (
       <Container style={{backgroundColor:'#181818'}}>
+         <Helmet>
+            <title>Liked Videos</title>
+         </Helmet>
          <Row>
          {!loading && x
              ? videos.map(video => (
