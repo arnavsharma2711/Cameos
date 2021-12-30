@@ -153,7 +153,6 @@ export const getSubscribedChannels = () => async (dispatch, getState) => {
       const { data } = await request('/subscriptions', {
          params: {
             part: 'snippet,contentDetails',
-
             mine: true,
          },
          headers: {
@@ -181,22 +180,21 @@ export const getVideosByChannel = id => async dispatch => {
 
       // 1. get upload playlist id
       const {
-         data: { items },
+         data,
       } = await request('/channels', {
          params: {
             part: 'contentDetails',
-            id: id,
+            id,
          },
       })
-      const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads
-      // 2. get the videos using the id
-      const { data } = await request('/playlistItems', {
-         params: {
-            part: 'snippet,contentDetails',
-            playlistId: uploadPlaylistId,
-            maxResults: 30,
-         },
-      })
+      // const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads
+      // // 2. get the videos using the id
+      // const { data } = await request('/playlistItems', {
+      //    params: {
+      //       part: 'snippet,contentDetails',
+      //       playlistId: uploadPlaylistId,
+      //    },
+      // })
 
       dispatch({
          type: CHANNEL_VIDEOS_SUCCESS,

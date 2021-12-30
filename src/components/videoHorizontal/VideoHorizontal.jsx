@@ -21,7 +21,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
          title,
          publishedAt,
          thumbnails: { medium },
-         resourceId,
+         // resourceId,
       },
    } = video
 
@@ -64,23 +64,23 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
 
    const seconds = moment.duration(duration).asSeconds()
    const _duration = moment.utc(seconds * 1000).format('mm:ss')
-
+   
    const navigate = useNavigate()
-
-   const _channelId = resourceId?.channelId || channelId
-
+   
+   //const _channelId = resourceId?.channelId || channelId
+   
    const handleClick = () => {
       isVideo
-         ? navigate(`/watch/${id.videoId}`)
-         : navigate(`/channel/${_channelId}`)
+      ? navigate(`/watch/${id.videoId}`)
+      : navigate(`/feed/subscriptions`)
    }
-
+   
    const thumbnail = !isVideo && 'videoHorizontal__thumbnail-channel'
-
+   
    return (
       <Row
-         className='py-2 m-1 videoHorizontal align-items-center'
-         onClick={handleClick}>
+      className='py-2 m-1 videoHorizontal align-items-center'
+      onClick={handleClick}>
          {/* //TODO refractor grid */}
          <Col xs={6} md={searchScreen || subScreen ? 4 : 6} className='videoHorizontal__left'>
             <LazyLoadImage src={medium.url ? medium.url : `https://cdn-icons-png.flaticon.com/512/734/734467.png`} effect='blur' className={`videoHorizontal__thumbnail ${thumbnail} `}
@@ -111,7 +111,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
             </div>
             {subScreen && (
                <p className='mt-2'>
-                  <MdSubscriptions size={23} style={{marginRight:5}}/>{video.contentDetails.totalItemCount} Videos
+                  <MdSubscriptions size={23} style={{marginRight:5}}/>{video.contentDetails.totalItemCount >= 1000 ? numeral(views).format('0.a').toUpperCase() : video.contentDetails.totalItemCount} Videos
                </p>
             )}
          </Col>

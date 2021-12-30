@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import Video from '../../components/video/Video'
 import { getChannelDetails } from '../../redux/actions/channel.action'
 import { getVideosByChannel } from '../../redux/actions/videos.action'
-
 import numeral from 'numeral'
 
 import './channelScreen.scss'
@@ -26,6 +25,11 @@ const ChannelScreen = () => {
    const { snippet, statistics } = useSelector(
       state => state.channelDetails.channel
    )
+   console.log("VIdeo")
+   console.log(videos)
+   console.log("Snnippet")
+   console.log(snippet)
+
 
    return (
       <>

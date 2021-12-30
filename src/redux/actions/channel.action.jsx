@@ -1,7 +1,7 @@
 import request from '../../api'
 import { CHANNEL_DETAILS_FAIL, CHANNEL_DETAILS_REQUEST, CHANNEL_DETAILS_SUCCESS, SET_SUBSCRIPTION_STATUS, } from '../actionType'
 
-export const getChannelDetails = id => async dispatch => {
+export const getChannelDetails = id => async (dispatch, getState) => {
    try {
       dispatch({
          type: CHANNEL_DETAILS_REQUEST,
@@ -10,7 +10,10 @@ export const getChannelDetails = id => async dispatch => {
       const { data } = await request('/channels', {
          params: {
             part: 'snippet,statistics,contentDetails',
-            id,
+            mine:true,
+         },
+         headers: {
+            Authorization: `Bearer ${getState().auth.accessToken}`,
          },
       })
       dispatch({
