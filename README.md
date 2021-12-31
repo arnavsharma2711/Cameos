@@ -3,7 +3,7 @@
 A Youtube Replica project built using React.JS, Redux, Firebase Auth, YouTube Data API. The project utilizes Firebase Auth to authorise the user using there google account to access a responsive React.JS Front End which present videos along with its details fetched though Redux and YouTube Data API v3.
 
 ## Deployment
-https://ytclone-arnavsharma2711.web.app/
+cameos-arnavsharma2711.netlify.app
 >If the app does show data that might be the case of YouTube API exhausted for the day.
 
 ## Prerequisite
