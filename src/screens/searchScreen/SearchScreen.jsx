@@ -20,7 +20,7 @@ const SearchScreen = () => {
    return (
       <Container>
          <Helmet>
-            <title>YouTube Clone | Search Result</title>
+            <title>Cameos | Search Result</title>
         </Helmet>
          {!loading ? (
             videos?.map(video => (

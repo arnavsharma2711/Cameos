@@ -31,7 +31,7 @@ const FetchScreen = () => {
          return (
        <Container>
          <Helmet>
-            <title>YouTube Clone</title>
+            <title>Cameos</title>
          </Helmet>
        <CategoriesBar/>
 

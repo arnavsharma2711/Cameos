@@ -8,7 +8,7 @@ import numeral from 'numeral'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkSubscriptionStatus, getChannelDetails } from '../../redux/actions/channel.action'
 import HelmetCustom from '../helmetCustom/HelmetCustom'
-import { rateVideos } from '../../redux/actions/videos.action'
+import { rateVideo } from '../../redux/actions/videos.action'
 
 const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
 
@@ -25,12 +25,12 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
        dispatch(getChannelDetails(channelId))
        dispatch(checkSubscriptionStatus(channelId))
     }, [dispatch, channelId])
-    const handleLikeDislike = (e) =>{
-        if (e)
-            dispatch(rateVideos(videoId,true))
-        else
-            dispatch(videoId,false)
-    }
+    const handleLikeVideo = async () => {
+        dispatch(rateVideo(videoId, "like"));
+      };
+      const handleDisLikeVideo = async () => {
+        dispatch(rateVideo(videoId, "dislike"));
+      };
     return (
         <div className="videoMetaData py-2">
             <HelmetCustom title={title} description={description}/>
@@ -39,10 +39,10 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
                 <div className='py-1 d-flex justify-content-between align-items-center'>
                     <span>{(numeral(viewCount).format('0.a')).toUpperCase()} Views • {moment(publishedAt).fromNow()}</span>
                     <div>
-                        <span className='ThumbUp' onClick={() => handleLikeDislike(true)}>
+                        <span className='ThumbUp' onClick={() => handleLikeVideo()}>
                             <MdThumbUp size={26} /> {(numeral(likeCount).format('0.a')).toUpperCase()}
                         </span>
-                        <span className='ThumbUp' onClick={() => handleLikeDislike(false)}>
+                        <span className='ThumbUp'  onClick={() => handleDisLikeVideo()}>
                             <MdThumbDown size={26} /> {(numeral(dislikeCount).format('0.a')).toUpperCase()}
                         </span>
                     </div>

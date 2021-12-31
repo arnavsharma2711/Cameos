@@ -9,7 +9,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
 
 const Video = ({video}) => {
-    const {id,snippet: {channelId,channelTitle,title,publishedAt,thumbnails: { medium },},} = video
+    const {id,snippet: {channelId,channelTitle,title,publishedAt,thumbnails: { medium },},contentDetails,} = video
 
     const [views, setViews] = useState(null)
     const [duration, setDuration] = useState(null)
@@ -17,13 +17,13 @@ const Video = ({video}) => {
 
     const seconds = moment.duration(duration).asSeconds()
     const _duration = moment.utc(seconds * 1000).format('mm:ss')
-
-    const _videoId = id?.videoId || id
+    const _videoId = id?.videoId || contentDetails?.videoId || id
     const navigate = useNavigate()
 
     useEffect(() => {
         const get_video_details = async () => {
            const {data: { items },} = await request('/videos', {
+               
                 params: {
                     part: 'contentDetails,statistics',
                     id: _videoId,

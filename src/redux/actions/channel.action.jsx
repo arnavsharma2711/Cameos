@@ -1,7 +1,7 @@
 import request from '../../api'
-import { CHANNEL_DETAILS_FAIL, CHANNEL_DETAILS_REQUEST, CHANNEL_DETAILS_SUCCESS, SET_SUBSCRIPTION_STATUS, } from '../actionType'
+import { CHANNEL_DETAILS_FAIL, CHANNEL_DETAILS_REQUEST, CHANNEL_DETAILS_SUCCESS, SET_SUBSCRIPTION_STATUS, SUBSCRIBE_CHANNEL_FAIL, SUBSCRIBE_CHANNEL_SUCCESS, } from '../actionType'
 
-export const getChannelDetails = id => async (dispatch, getState) => {
+export const getChannelDetails = id => async dispatch => {
    try {
       dispatch({
          type: CHANNEL_DETAILS_REQUEST,
@@ -10,10 +10,7 @@ export const getChannelDetails = id => async (dispatch, getState) => {
       const { data } = await request('/channels', {
          params: {
             part: 'snippet,statistics,contentDetails',
-            mine:true,
-         },
-         headers: {
-            Authorization: `Bearer ${getState().auth.accessToken}`,
+            id: id,
          },
       })
       dispatch({
@@ -45,8 +42,28 @@ export const checkSubscriptionStatus = id => async (dispatch, getState) => {
          type: SET_SUBSCRIPTION_STATUS,
          payload: data.items.length !== 0,
       })
-      console.log(data)
    } catch (error) {
       console.log(error.response.data)
+   }
+}
+
+export const subscriberChannel = (id, type) => async (dispatch, getState) => {
+   try {
+      await request.post('/videos/rate', null, {
+         params: {
+            id: id,
+            rating: type,
+         },
+         headers: { Authorization: `Bearer ${getState()?.auth.accessToken}` },
+      })
+      dispatch({
+         type: SUBSCRIBE_CHANNEL_SUCCESS,
+      })
+   } catch (error) {
+      console.log(error.message)
+      dispatch({
+         type: SUBSCRIBE_CHANNEL_FAIL,
+         payload: error.message,
+      })
    }
 }

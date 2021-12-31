@@ -21,7 +21,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
          title,
          publishedAt,
          thumbnails: { medium },
-         // resourceId,
+         resourceId,
       },
    } = video
 
@@ -67,12 +67,13 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
    
    const navigate = useNavigate()
    
-   //const _channelId = resourceId?.channelId || channelId
+   const _channelId = resourceId?.channelId || channelId
    
    const handleClick = () => {
       isVideo
       ? navigate(`/watch/${id.videoId}`)
-      : navigate(`/feed/subscriptions`)
+      
+      : navigate(`/channel/${_channelId}`)
    }
    
    const thumbnail = !isVideo && 'videoHorizontal__thumbnail-channel'
@@ -111,7 +112,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
             </div>
             {subScreen && (
                <p className='mt-2'>
-                  <MdSubscriptions size={23} style={{marginRight:5}}/>{video.contentDetails.totalItemCount >= 1000 ? numeral(views).format('0.a').toUpperCase() : video.contentDetails.totalItemCount} Videos
+                  <MdSubscriptions size={23} style={{marginRight:5}}/>{video.contentDetails.totalItemCount} Videos
                </p>
             )}
          </Col>

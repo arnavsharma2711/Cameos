@@ -9,27 +9,21 @@ import numeral from 'numeral'
 
 import './channelScreen.scss'
 import { Helmet } from 'react-helmet'
+import VideoSkeleton from '../../components/skeletons/videoSkeleton/VideoSkeleton'
 
 const ChannelScreen = () => {
-   
-   const { channelId } = useParams()
+   const { channelid } = useParams()
 
    const dispatch = useDispatch()
-
    useEffect(() => {
-      dispatch(getVideosByChannel(channelId))
-      dispatch(getChannelDetails(channelId))
-   }, [dispatch, channelId])
+      dispatch(getVideosByChannel(channelid))
+      dispatch(getChannelDetails(channelid))
+   }, [dispatch, channelid])
 
    const { videos, loading } = useSelector(state => state.channelVideos)
    const { snippet, statistics } = useSelector(
       state => state.channelDetails.channel
    )
-   console.log("VIdeo")
-   console.log(videos)
-   console.log("Snnippet")
-   console.log(snippet)
-
 
    return (
       <>
@@ -38,12 +32,12 @@ const ChannelScreen = () => {
          </Helmet>
          <div className='px-5 py-2 my-2 d-flex justify-content-between align-items-center channelHeader'>
             <div className='d-flex align-items-center'>
-               <img src={snippet?.thumbnails?.default?.url} alt='' />
+               <img className='channelIcon' src={snippet?.thumbnails?.default?.url} alt='' />
 
                <div className='ml-3 channelHeader__details'>
                   <h3>{snippet?.title}</h3>
                   <span>
-                     {numeral(statistics?.subscriberCount).format('0.a')}{' '}
+                     {numeral(statistics?.subscriberCount).format('0.a').toUpperCase()}{' '}
                      subscribers
                   </span>
                </div>
@@ -62,7 +56,7 @@ const ChannelScreen = () => {
                     ))
                   : [...Array(15)].map(() => (
                        <Col md={3} lg={3}>
-                          <h1>Loading</h1>
+                          <VideoSkeleton />
                        </Col>
                     ))}
             </Row>

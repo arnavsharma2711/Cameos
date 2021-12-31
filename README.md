@@ -1,6 +1,6 @@
-# YouTube Clone
+# Cameos
 
-A web development project built using React.JS, Redux, Firebase Auth, YouTube Data API. The project utilizes Firebase Auth to authorise the user using there google account to access a responsive React.JS Front End which present videos along with its details fetched though Redux and YouTube Data API v3.
+A Youtube Replica project built using React.JS, Redux, Firebase Auth, YouTube Data API. The project utilizes Firebase Auth to authorise the user using there google account to access a responsive React.JS Front End which present videos along with its details fetched though Redux and YouTube Data API v3.
 
 ## Deployment
 https://ytclone-arnavsharma2711.web.app/
@@ -38,19 +38,18 @@ You may also see any lint errors in the console.
 
 
 ## Screenshots
-* Login Screen : ![Login Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/1.%20Login%20Screen.png?raw=true "Login Screen")
-* Firebase Auth : ![Firebase Auth](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/2.%20Firebase%20Auth.png?raw=true "Firebase Auth")
-* Home Screen : ![Home Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/3.%20Home%20Screen.png?raw=true "Home Screen")
-* Category Select : ![Category Select](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/4.%20Category%20Select.png?raw=true "Category Select")
-* Search Screen : ![Search Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/5.%20Search%20Screen.png?raw=true "Search Screen")
-* Video Playback Screen : ![Video Playback Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/5.%20Video%20Playback%20Screen.png?raw=true "Video Playback Screen")
-* Liked Screen : ![Liked Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/6.%20Liked%20Screen.png?raw=true "Liked Screen")
-* Subscriber Screen : ![Subscriber Screen](https://github.com/arnavsharma2711/YouTube-Clone/blob/main/Screenshot/7.%20Subscriber%20Screen.png?raw=true "Subscriber Screen")
+* Login Screen : ![Login Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/1.%20Login%20Screen.png?raw=true "Login Screen")
+* Firebase Auth : ![Firebase Auth](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/2.%20Firebase%20Auth.png?raw=true "Firebase Auth")
+* Home Screen : ![Home Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/3.%20Home%20Screen.png?raw=true "Home Screen")
+* Category Select : ![Category Select](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/4.%20Category%20Select.png?raw=true "Category Select")
+* Search Screen : ![Search Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Search%20Screen.png?raw=true "Search Screen")
+* Video Playback Screen : ![Video Playback Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Video%20Playback%20Screen.png?raw=true "Video Playback Screen")
+* Liked Screen : ![Liked Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/6.%20Liked%20Screen.png?raw=true "Liked Screen")
+* Subscriber Screen : ![Subscriber Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/7.%20Subscriber%20Screen.png?raw=true "Subscriber Screen")
 
 ## Future Scope of this project
-1. Adding Like/Dislike functionally for videos and Subscriptions for channels.
-2. Adding a channel screen 
-3. Adding a dummy user for project access.
+1. Adding functionally Subscriptions for channels.
+2. Adding a dummy user for easy project access.
 3. Adding more ways to authenticate user.
 
 ## References

@@ -28,7 +28,7 @@ const HomeScreen = ({get}) => {
          return (
        <Container>
       <Helmet>
-         <title>YouTube Clone</title>
+         <title>Cameos</title>
       </Helmet>
        <CategoriesBar/>
 

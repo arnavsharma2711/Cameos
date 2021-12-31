@@ -20,6 +20,37 @@
         display: none;
     }
 
+    div{
+        button{
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+        div{
+            background-color: $black-primary;
+
+        }
+        .dropdown-toggle:after {
+            display: none !important; 
+          }
+    }
+    
+    p{
+        em{
+           font-family: 'Gochi Hand', cursive;
+           font-size: 3rem;
+           text-align: center;
+           color: #F10000;
+           margin-left: 20px;
+           cursor: pointer;
+        }
+     }
+     .dropdownIcon{
+        width: 25px;
+        margin: 0;
+        margin: 0 10px 0 0;
+     }
+
     &__logo {
         width: 35px;
         height: auto;
@@ -79,17 +110,36 @@
      }
 }
 @media (max-width: $breakpoint-medium) {
+    p{
+        em{
+            font-size: 2rem;
+            margin-left: 0.6rem;
+        }
+     }
     form {
         flex: 0.9;
+        button{
+            padding:0 0.6rem;
+        }
      }
 }
 
 @media (max-width: $breakpoint-small) {
     .header {
        padding: 1rem;
+       p{
+        em{
+            font-size: 1.5rem;
+            margin-left: 0.3rem;
+        }
+     }
  
        form {
-          flex: 1;
+          flex:1;
+          margin:0 0.4rem;
+          button{
+              padding:0 0.4rem;
+          }
        }
  
        &__menu {

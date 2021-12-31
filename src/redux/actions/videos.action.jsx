@@ -1,5 +1,5 @@
 import request from "../../api"
-import { CHANNEL_DETAILS_FAIL, CHANNEL_VIDEOS_REQUEST, CHANNEL_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, LIKED_VIDEO_FAIL, LIKED_VIDEO_REQUEST, LIKED_VIDEO_SUCCESS, RELATED_VIDEO_FAIL, RELATED_VIDEO_REQUEST, RELATED_VIDEO_SUCCESS, SEARCHED_VIDEO_FAIL, SEARCHED_VIDEO_REQUEST, SEARCHED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, RATE_VIDEO_FAIL, RATE_VIDEO_SUCCESS, RATE_VIDEO_REQUEST } from "../actionType"
+import { CHANNEL_DETAILS_FAIL, CHANNEL_VIDEOS_REQUEST, CHANNEL_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, LIKED_VIDEO_FAIL, LIKED_VIDEO_REQUEST, LIKED_VIDEO_SUCCESS, RELATED_VIDEO_FAIL, RELATED_VIDEO_REQUEST, RELATED_VIDEO_SUCCESS, SEARCHED_VIDEO_FAIL, SEARCHED_VIDEO_REQUEST, SEARCHED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, RATE_VIDEO_FAIL, RATE_VIDEO_SUCCESS } from "../actionType"
 
 export const getPopularVideos = () => async (dispatch, getState) => {
     try {
@@ -125,7 +125,6 @@ export const getVideosBySearch = keyword => async dispatch => {
       const { data } = await request('/search', {
          params: {
             part: 'snippet',
-
             maxResults: 20,
             q: keyword,
             type: 'video,channel',
@@ -172,7 +171,7 @@ export const getSubscribedChannels = () => async (dispatch, getState) => {
    }
 }
 
-export const getVideosByChannel = id => async dispatch => {
+export const getVideosByChannel = channelId => async (dispatch, getState) => {
    try {
       dispatch({
          type: CHANNEL_VIDEOS_REQUEST,
@@ -180,21 +179,22 @@ export const getVideosByChannel = id => async dispatch => {
 
       // 1. get upload playlist id
       const {
-         data,
+         data: { items },
       } = await request('/channels', {
          params: {
             part: 'contentDetails',
-            id,
+            id: channelId,
          },
       })
-      // const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads
-      // // 2. get the videos using the id
-      // const { data } = await request('/playlistItems', {
-      //    params: {
-      //       part: 'snippet,contentDetails',
-      //       playlistId: uploadPlaylistId,
-      //    },
-      // })
+      const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads
+      // 2. get the videos using the id
+      const { data } = await request('/playlistItems', {
+         params: {
+            part: 'snippet,contentDetails',
+            playlistId: uploadPlaylistId,
+            maxResults: 2,
+         },
+      })
 
       dispatch({
          type: CHANNEL_VIDEOS_SUCCESS,
@@ -238,30 +238,23 @@ export const getlikedVideos = () => async (dispatch, getState) => {
    }
 }
 
-export const rateVideos = (id,rate) => async (dispatch , getState) => {
+export const rateVideo = (id, type) => async (dispatch, getState) => {
    try {
-      dispatch({
-         type: RATE_VIDEO_REQUEST,
-      })
-
-      const { data } = await request('/videos/rate', {
+      await request.post('/videos/rate', null, {
          params: {
             id: id,
-            raiting: rate ? 'like' : 'dislike',
+            rating: type,
          },
-         headers: {
-            Authorization: `Bearer ${getState().auth.accessToken}`,
-         },
+         headers: { Authorization: `Bearer ${getState()?.auth.accessToken}` },
       })
       dispatch({
          type: RATE_VIDEO_SUCCESS,
-         payload: data.items,
       })
    } catch (error) {
-      console.log(error.response.data.message)
+      console.log(error.message)
       dispatch({
          type: RATE_VIDEO_FAIL,
-         payload: error.response.data.message,
+         payload: error.message,
       })
    }
 }
