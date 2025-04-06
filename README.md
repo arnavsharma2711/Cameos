@@ -1,66 +1,123 @@
-# Cameos
+# 🎥 Cameos – A YouTube Clone  
 
-A Youtube Replica project built using React.JS, Redux, Firebase Auth, YouTube Data API. The project utilizes Firebase Auth to authorise the user using there google account to access a responsive React.JS Front End which present videos along with its details fetched though Redux and YouTube Data API v3.
+> **Built with:** React.js ⚛️ | Redux 🧠 | Firebase Auth 🔐 | YouTube Data API 🎞️  
 
-## Deployment
-https://cameos-arnavsharma2711.netlify.app
->If the app does show data that might be the case of YouTube API exhausted for the day.
+Cameos is a responsive YouTube clone that lets users log in via Google using Firebase Authentication and enjoy a fully-featured, dynamic video browsing experience. Videos and metadata are fetched in real-time using **Redux** and **YouTube Data API v3**.
 
-## Prerequisite
-* You must have node.js installed in your system.
-* Add a .env file in the root folder and enter the following line
+---
+
+## 🌐 Live Demo
+
+👉 [**Try Cameos Now**](https://cameos-arnavsharma2711.netlify.app)
+
+> ⚠️ If video data doesn’t appear, the YouTube API quota might have been exhausted for the day.
+
+---
+
+## ⚙️ Prerequisites
+
+Before running the app locally, make sure you have:
+
+- 🟢 **Node.js** installed
+- 🔑 A `.env` file in the project root with your YouTube API key:
+  
 ```bash
-REACT_APP_YT_API_KEY = "your-api-key"
+REACT_APP_YT_API_KEY="your-api-key"
 ```
-> To get the your api key use Google Cloud Platform and enable youtube data api v3.
 
-* Use the package manager to install applications prerequisite node_modules
+> To get your API key: head to [Google Cloud Console](https://console.cloud.google.com/), enable **YouTube Data API v3**, and generate a key.
+
+- 📦 Install the dependencies:
+
 ```bash
 npm i
 ```
 
-## How to access the project
-Run the following to command to run the app in the development mode.
+---
+
+## 🚀 Getting Started
+
+To run the app locally:
+
 ```bash
 npm start
 ```
-Open http://localhost:3000 to view it in your browser.
-The page will reload when you make changes.
-You may also see any lint errors in the console.
 
-## Synopsis of the project
-* The app runs in home screen by default but if it is not able to find an access token then it is navigated to login screen. 
-* The login screen consists of Firebase Auth access button which when pressed utilize Firebase Auth to authorise the user. This action is takes place in auth.action.jsx. The access token is created here which consist of user's name and profile picture URL. When the app finds an access token it is navigated back to Home Screen.
-* Home Screen consist of a header, sidebar, categories bar and a video holder component. By default, most poplar videos in India are fetched and displayed to the video holder component. All various videos fetch action takes place in videos.action.jsx file. Videos can be accessed by clicking over them. Please Note all the videos might not be accessible due the channel specifications.
-* Categories bar is a dummy array which fetch popular videos in that category and display over the video holder component. Sidebars consist of Popular categories and link to user Subscriber screen and liked videos screen. Header components consist of search input which displays 20 results based on your input query in the Search Screen.
-* Video Playback Screen consist of an iframe to play video along with video's metadata and related videos. You can enter your comment through this screen.
-* Search Screen, Liked Screen, Subscriber Screen consist of videos and channel list as per user’s query, all videos user liked videos (at max 15) and subscriptions respectively.
+Then visit [http://localhost:3000](http://localhost:3000) in your browser. 🔁 The page will auto-reload on code changes and show any linting errors in the console.
 
+---
 
-## Screenshots
-* Login Screen : ![Login Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/1.%20Login%20Screen.png?raw=true "Login Screen")
-* Firebase Auth : ![Firebase Auth](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/2.%20Firebase%20Auth.png?raw=true "Firebase Auth")
-* Home Screen : ![Home Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/3.%20Home%20Screen.png?raw=true "Home Screen")
-* Category Select : ![Category Select](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/4.%20Category%20Select.png?raw=true "Category Select")
-* Search Screen : ![Search Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Search%20Screen.png?raw=true "Search Screen")
-* Video Playback Screen : ![Video Playback Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Video%20Playback%20Screen.png?raw=true "Video Playback Screen")
-* Liked Screen : ![Liked Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/6.%20Liked%20Screen.png?raw=true "Liked Screen")
-* Subscriber Screen : ![Subscriber Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/7.%20Subscriber%20Screen.png?raw=true "Subscriber Screen")
+## 📖 Project Overview
 
-## Future Scope of this project
-1. Adding functionally Subscriptions for channels.
-2. Adding a dummy user for easy project access.
-3. Adding more ways to authenticate user.
+### 🔐 Authentication Flow
+- On launch, the app checks for an **access token**. If not found, it redirects to the **Login screen**.
+- The login uses **Firebase Auth** with Google Sign-In and stores the user’s name & profile picture.
 
-## References
-* React.JS->\
-https://reactjs.org/docs/getting-started.html
-* Redux->\
-https://redux.js.org/introduction/getting-started
-* Firebase->\
-https://firebase.google.com/docs/web/setup
-* YouTube Data API->\
-https://developers.google.com/youtube/v3/getting-started
-* React Router DOM->\
-https://reactrouter.com/docs/en/v6
-* Miscellaneous -> [Axios](https://www.npmjs.com/package/axios "Axios"), [Bootstrap](https://www.npmjs.com/package/bootstrap "Bootstrap"), [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component "React Infinite Scroll Component"), [React Conent Loader](https://www.npmjs.com/package/react-content-loader "React Conent Loader"), [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component "React Lazy Load Image Component"), [React Helmet](https://www.npmjs.com/package/react-helmet "React Helmet"), [Numeral](https://www.npmjs.com/package/numeral "Numeral"), [Moment](https://www.npmjs.com/package/moment "Moment")
+### 🏠 Home Screen
+- Consists of:
+  - Header (with search)
+  - Sidebar (popular categories, liked videos, subscriptions)
+  - Categories bar (dummy array)
+  - Video feed (popular videos in India fetched via API)
+- Clicking on a video navigates to the **Video Playback Screen**.
+
+### 🎬 Video Playback
+- Embedded YouTube video via `iframe`
+- Video metadata (title, views, publish date)
+- Related video suggestions
+- Comment section input
+
+### 🔎 Search Screen
+- Shows video results for the user’s search query.
+
+### ❤️ Liked Videos
+- Displays a list of user-liked videos (up to 15)
+
+### 👤 Subscriptions
+- Displays subscribed channels (based on dummy logic)
+
+---
+
+## 📸 Screenshots
+
+| Feature | Preview |
+|--------|---------|
+| 🔐 Login Screen | ![Login Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/1.%20Login%20Screen.png?raw=true) |
+| ☁️ Firebase Auth | ![Firebase Auth](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/2.%20Firebase%20Auth.png?raw=true) |
+| 🏠 Home Screen | ![Home Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/3.%20Home%20Screen.png?raw=true) |
+| 🗂️ Category Select | ![Category Select](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/4.%20Category%20Select.png?raw=true) |
+| 🔍 Search Screen | ![Search Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Search%20Screen.png?raw=true) |
+| 🎞️ Video Playback | ![Video Playback](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/5.%20Video%20Playback%20Screen.png?raw=true) |
+| ❤️ Liked Videos | ![Liked Videos](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/6.%20Liked%20Screen.png?raw=true) |
+| 📺 Subscriptions | ![Subscriber Screen](https://github.com/arnavsharma2711/Cameos/blob/main/Screenshot/7.%20Subscriber%20Screen.png?raw=true) |
+
+---
+
+## 🔮 Future Scope
+
+Here’s what’s planned next:
+
+1. ✅ Enable actual **subscription functionality** for channels  
+2. 👥 Add a **dummy user** for easy guest access  
+3. 🔐 Expand authentication methods (e.g., GitHub, Email/Password)
+
+---
+
+## 📚 References & Libraries
+
+- **React.js** → [reactjs.org](https://reactjs.org/docs/getting-started.html)  
+- **Redux** → [redux.js.org](https://redux.js.org/introduction/getting-started)  
+- **Firebase** → [firebase.google.com](https://firebase.google.com/docs/web/setup)  
+- **YouTube Data API v3** → [developers.google.com/youtube/v3](https://developers.google.com/youtube/v3/getting-started)  
+- **React Router DOM** → [reactrouter.com](https://reactrouter.com/docs/en/v6)
+
+### 🛠️ Other Tools & Libraries:
+
+- [Axios](https://www.npmjs.com/package/axios)  
+- [Bootstrap](https://www.npmjs.com/package/bootstrap)  
+- [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component)  
+- [React Content Loader](https://www.npmjs.com/package/react-content-loader)  
+- [React Lazy Load Image](https://www.npmjs.com/package/react-lazy-load-image-component)  
+- [React Helmet](https://www.npmjs.com/package/react-helmet)  
+- [Numeral.js](https://www.npmjs.com/package/numeral)  
+- [Moment.js](https://www.npmjs.com/package/moment)
